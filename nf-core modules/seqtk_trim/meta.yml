@@ -1,4 +1,4 @@
-name: seqtk_trimfq
+name: seqtk_trim
 description: Trims the bases from left end and right end of reads
 keywords:
   - trimming
