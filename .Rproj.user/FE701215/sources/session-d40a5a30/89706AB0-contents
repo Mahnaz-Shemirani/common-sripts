@@ -1,0 +1,22 @@
+#!/bin/bash -l
+
+set -eu
+
+# define variables
+proj=u2021014
+email=mahnaz.irani-shemirani@umu.se
+a=$(realpath ../results/Lalbus.bed)
+bfile1=$(realpath ../results/frame123.bed)
+bfile2=$(realpath ../results/frame456.bed)
+out=$(realpath ../results/bedtool)
+singularity=$(realpath ../singularity/bedtools_2.30.0.sif)
+
+if [ ! -d $out ]; then
+  mkdir -p $out
+fi
+
+# env
+export SINGULARITY_BINDPATH="/mnt:/mnt"
+
+# Run bedtools intersect
+sbatch -A $proj --mail-user $email runBedToolsIntersect.sh $singularity $a $bfile1 $bfile2 $out    

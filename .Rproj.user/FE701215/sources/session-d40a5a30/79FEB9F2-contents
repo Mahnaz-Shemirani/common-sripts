@@ -1,0 +1,14 @@
++ export 'USAGETXT=Usage: /tmp/slurmd/job482842/slurm_script <singularity container> <a file> <b file1> <b file2> <out dir> [bed intersect option]'
++ USAGETXT='Usage: /tmp/slurmd/job482842/slurm_script <singularity container> <a file> <b file1> <b file2> <out dir> [bed intersect option]'
++ source /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/pipeline/../UPSCb-common/src/bash/functions.sh
++ [[ 5 != 5 ]]
++ [[ ! -f /mnt/picea/storage/singularity/bedtools_2.30.0.sif ]]
++ [[ -z /mnt:/mnt ]]
++ [[ ! -f /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/Lalbus.bed ]]
++ [[ ! -f /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/frame123.bed ]]
++ [[ ! -f /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/frame456.bed ]]
++ [[ ! -d /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/bedtool ]]
+++ basename /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/Lalbus.bed
++ outfile=/mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/bedtool/Lalbus.bed
++ singularity exec /mnt/picea/storage/singularity/bedtools_2.30.0.sif bedtools intersect -a /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/Lalbus.bed -b /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/frame123.bed /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/frame456.bed
+/tmp/slurmd/job482842/slurm_script: line 39: /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/bedtool/Lalbus.bed: Is a directory

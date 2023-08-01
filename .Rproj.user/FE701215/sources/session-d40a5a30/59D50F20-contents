@@ -1,0 +1,26 @@
+#!/bin/bash -l
+
+set -eu
+
+# define variables
+proj=u2021014
+email=mahnaz.irani-shemirani@umu.se
+fileA=$(realpath ../results/Lalbus.bed)
+dirB=$(realpath ../results/dirB)
+out=$(realpath ../results/bedtool)
+singularity=$(realpath ../singularity/bedtools_2.30.0.sif)
+
+if [ ! -d $out ]; then
+  mkdir -p $out
+fi
+
+# env
+export SINGULARITY_BINDPATH="/mnt:/mnt"
+
+# Loop over all b files in the directory
+for fileB in "$dirB"/*.bed; do
+  # Define the output file name based on the input file names
+  output="${out}/$(basename ${fileA} .bed)_$(basename ${fileB} .bed)_overlap.bed"
+  # Run bedtools intersect
+  sbatch -A $proj --mail-user $email singularity exec $singularity bedtools intersect -a "$fileA" -b "$fileB" > "$output"    
+done

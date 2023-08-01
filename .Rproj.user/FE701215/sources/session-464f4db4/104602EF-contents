@@ -1,0 +1,30 @@
+#!/bin/bash -l
+
+set -eu
+#set -x
+
+# define variables
+proj=u2021014
+email=mahnaz.irani-shemirani@umu.se
+fileA=$(realpath ../results/Lalbus.bed)
+fileB1=$(realpath ../results/frame123.bed)
+fileB2=$(realpath ../results/frame456.bed)
+out=$(realpath ../results/intersect.bed)
+singularity=$(realpath ../singularity/bedtools_2.30.0.sif)
+
+
+# env
+export SINGULARITY_BINDPATH="/mnt:/mnt"
+
+
+
+# Run bedtools intersect
+singularity exec $singularity bedtools intersect -wa -wb \
+-a $fileA \
+-b $fileB1 $fileB2 \
+-filenames \
+-f 1.0 \
+> $out
+
+#remove sorted file
+rm ${fileA}.sorted ${fileB1}.sorted ${fileB2}.sorted

@@ -1,0 +1,30 @@
+#!/bin/bash -l
+
+set -eu
+
+# define variables
+proj=u2021014
+email=mahnaz.irani-shemirani@umu.se
+in=$(realpath ../results/trimmomatic_zero_Allprimers)
+out=$(realpath ../results/salmon_se_R1)
+singularity=$(realpath ../singularity/kogia/salmon_1.9.0.sif)
+salmon_index=$(realpath ../reference/salmon/Picea-abies-protein-coding_without-decoy_salmon-version-1-dot-9-dot0)
+mean=49.51
+sd=25.22
+
+
+if [ ! -d $out ]; then
+  mkdir -p $out
+fi
+
+
+# env
+export SINGULARITY_BINDPATH="/mnt:/mnt"
+
+
+# run
+for fq in $(find $in -name "*_1.fq"); do
+
+sbatch -A $proj --mail-user $email runSalmonSE.sh $singularity  $salmon_index $fq $out $mean $sd
+	
+done

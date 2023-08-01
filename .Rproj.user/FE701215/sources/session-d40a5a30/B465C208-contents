@@ -1,0 +1,11 @@
++ export 'USAGETXT=Usage: /tmp/slurmd/job482886/slurm_script <singularity container> <a file> <dirB> <out dir> [bed intersect option]'
++ USAGETXT='Usage: /tmp/slurmd/job482886/slurm_script <singularity container> <a file> <dirB> <out dir> [bed intersect option]'
++ source /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/pipeline/../UPSCb-common/src/bash/functions.sh
++ [[ 0 != 4 ]]
++ abort 'This function expects 5 arguments'
++ echo This function expects 5 arguments
+This function expects 5 arguments
++ usage
++ echo 'Usage: /tmp/slurmd/job482886/slurm_script <singularity container> <a file> <dirB> <out dir> [bed intersect option]'
+Usage: /tmp/slurmd/job482886/slurm_script <singularity container> <a file> <dirB> <out dir> [bed intersect option]
++ exit 1

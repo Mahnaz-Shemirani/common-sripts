@@ -1,0 +1,25 @@
+#!/bin/bash -l
+
+set -eu
+
+# define variables
+proj=u2021014
+email=mahnaz.irani-shemirani@umu.se
+in=$(realpath ../../results/trimmomatic)
+out=$(realpath ../results/seqtk)
+singularity=$(realpath ../singularity/kogia/seqtk_1.3.sif)
+
+if [ ! -d $out ]; then
+  mkdir -p $out
+fi
+
+# env
+export SINGULARITY_BINDPATH="/mnt:/mnt"
+
+# run
+for fq in $(find $in -name "*_1.fq.gz"); do
+
+sbatch -A $proj --mail-user $email $(basename ${fq/_1.fq.gz/_2.fq.gz})
+	runSeqtk_mnz.sh  $singularity $fq $out
+	
+done

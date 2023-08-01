@@ -1,0 +1,1 @@
+singularity exec /mnt/picea/storage/singularity/bedtools_2.30.0.sif bedtools intersect -a /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/Lalbus.bed -b /mnt/picea/home/mshemirani/Git/lupinMicroPeptide/results/dirB/frame456.bed
