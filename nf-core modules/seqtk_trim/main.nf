@@ -1,4 +1,4 @@
-// To use this module first define the input chanel in the work flow with .transpose()
+// To use this module in paird-end mode first define the input chanel in the work flow with transpose() and remeber that the next step only get single-end input while the meta is paired-end therefore use groupTuple() for the next tool
 
 process SEQTK_TRIMFQ {
     tag "$meta.id"
@@ -12,7 +12,7 @@ process SEQTK_TRIMFQ {
 
     input:
     tuple val(meta), path(reads)
-    val (trim_begining)
+    val (trim_beginning)
     val (trim_end)
 
     output:
@@ -23,12 +23,13 @@ process SEQTK_TRIMFQ {
     when:
     task.ext.when == null || task.ext.when
 
+
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     seqtk \\
         trimfq \\
-        -b $trim_begining \\
+        -b $trim_beginning \\
         -e $trim_end \\
         $reads | \\
         gzip -c > "${reads.simpleName}.seqtk-trim.fastq.gz"
@@ -38,4 +39,5 @@ process SEQTK_TRIMFQ {
         seqtk: \$(echo \$(seqtk 2>&1) | sed 's/^.*Version: //; s/ .*\$//')
     END_VERSIONS
     """
+
 }
