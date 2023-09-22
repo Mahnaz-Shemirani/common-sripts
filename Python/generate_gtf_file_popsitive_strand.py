@@ -75,8 +75,8 @@ def process_row_cds(rows):
 
     return output_rows
 
-input_file = 'C:/Users/mzir0001/Downloads/reyes/data/Lalbus_CDS_pos_annot_semicolonEliminated.gtf'
-output_file = 'C:/Users/mzir0001/Downloads/reyes/data/Lalbus_CDS_pos_annot_rowexpand.gtf'
+input_file = 'PATH/TO/CDS_pos.gtf'
+output_file = 'PATH/TO/CDS_pos_rowexpand.gtf'
 
 # Store rows in a dictionary by transcript_id
 rows_by_transcript = {}
